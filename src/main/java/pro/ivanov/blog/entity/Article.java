@@ -18,15 +18,13 @@ public class Article {
     @Column(nullable = false)
     private String title;
 
-    @Lob
-    @Column(nullable = false)
+
+    @Column(nullable = false, columnDefinition="TEXT")
     private String content;
 
-    @PastOrPresent
     @Column(nullable = false)
     private LocalDateTime createdOn = LocalDateTime.now();
 
-    @PastOrPresent
     @Column(nullable = false)
     private LocalDateTime updatedOn = LocalDateTime.now();
 

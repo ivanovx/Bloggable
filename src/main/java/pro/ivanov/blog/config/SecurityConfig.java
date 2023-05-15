@@ -37,7 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                         .anyRequest().authenticated()
                 )
-                .formLogin(c -> c.loginPage("/user/login").successForwardUrl("/").permitAll())
+                .formLogin(c -> c.loginPage("/user/login").loginProcessingUrl("/user/login").successForwardUrl("/").permitAll())
                 .logout(c -> c.logoutUrl("/user/logout").logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll());
 
         return http.build();

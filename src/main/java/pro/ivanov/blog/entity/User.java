@@ -32,11 +32,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @PastOrPresent
     @Column(nullable = false)
     private LocalDateTime createdOn = LocalDateTime.now();
 
-    @PastOrPresent
     @Column(nullable = false)
     private LocalDateTime updatedOn = LocalDateTime.now();
 
