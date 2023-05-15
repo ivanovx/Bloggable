@@ -1,8 +1,10 @@
 package pro.ivanov.blog.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
@@ -30,33 +32,37 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @PastOrPresent
     @Column(nullable = false)
-    private LocalDateTime createdOn;
+    private LocalDateTime createdOn = LocalDateTime.now();
 
+    @PastOrPresent
     @Column(nullable = false)
-    private LocalDateTime updatedOn;
+    private LocalDateTime updatedOn = LocalDateTime.now();
 
     @OneToMany
     private List<Article> articles;
 
+    private Role role = Role.USER;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority("ROLE_" + this.getRole()));
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override

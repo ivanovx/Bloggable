@@ -1,6 +1,7 @@
 package pro.ivanov.blog.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -16,14 +17,17 @@ public class Article {
     @Column(nullable = false)
     private String title;
 
+    @Lob
     @Column(nullable = false)
     private String content;
 
+    @PastOrPresent
     @Column(nullable = false)
-    private LocalDateTime createdOn;
+    private LocalDateTime createdOn = LocalDateTime.now();
 
+    @PastOrPresent
     @Column(nullable = false)
-    private LocalDateTime updatedOn;
+    private LocalDateTime updatedOn = LocalDateTime.now();
 
     @ManyToOne
     private User author;
