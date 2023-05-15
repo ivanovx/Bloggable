@@ -1,11 +1,24 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Logged user: <span sec:authentication="name">Bob</span>
-Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
-</body>
+<!DOCTYPE HTML>
+<html
+        xmlns:th="https://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout.html}">
+    <head>
+        <title>Admin</title>
+    </head>
+    <body>
+        <section layout:fragment="content">
+            Logged user: <span sec:authentication="name"></span>
+            Roles: <span sec:authentication="principal.authorities"></span>
+
+            <a th:href="@{/admin/articles/create}">Create article</a>
+
+            <ul class="list-group">
+                <li th:each="article: ${articles}" class="list-group-item">
+                    <span th:text="${article.title}"></span>
+                    <a th:href="@{/admin/articles/update/{id}(id=${article.id})}">Update</a>
+                </li>
+            </ul>
+        </section>
+    </body>
 </html>

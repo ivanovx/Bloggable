@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pro.ivanov.blog.inputModel.LoginModel;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/user/login")
     public String login(Model model) {
 
-        model.addAttribute("user", new LoginModel());
+        model.addAttribute("user", new LoginModel("csyntax", "csyntax"));
 
         return "user/login";
     }

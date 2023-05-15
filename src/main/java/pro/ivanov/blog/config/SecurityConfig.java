@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import pro.ivanov.blog.entity.Role;
 import pro.ivanov.blog.repository.UserRepository;
 
@@ -31,13 +32,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                .csrf(c-> c.disable())
+                .csrf(c -> c.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/login", "/css/**", "/js/**").permitAll()
                         .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
-                .formLogin(c -> c.loginPage("/user/login").loginProcessingUrl("/user/login").successForwardUrl("/").permitAll())
+                .formLogin(login -> login.loginPage("/user/login").permitAll())
                 .logout(c -> c.logoutUrl("/user/logout").logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll());
 
         return http.build();

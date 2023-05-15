@@ -1,7 +1,6 @@
 package pro.ivanov.blog.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
