@@ -5,6 +5,9 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import pro.ivanov.blog.entity.Article;
 
+import java.util.List;
+
 @Repository
-public interface ArticleRespository extends PagingAndSortingRepository<Article, Long> {
+public interface ArticleRepository extends PagingAndSortingRepository<Article, Long> {
+    List<Article> findAll();
 }
