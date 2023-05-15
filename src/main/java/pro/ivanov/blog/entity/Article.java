@@ -2,13 +2,14 @@ package pro.ivanov.blog.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PastOrPresent;
+
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "artilces")
+@Table(name = "articles")
 public class Article {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package pro.ivanov.blog.inputModel;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
