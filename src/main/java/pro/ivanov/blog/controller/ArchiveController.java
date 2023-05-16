@@ -29,15 +29,6 @@ public class ArchiveController {
 
        model.addAttribute("articles", articles);
 
-       /*
-        Map<YearMonth, Integer> group = this.articleRepository.findAll().stream()
-                .collect(Collectors.groupingBy(article -> YearMonth.from(article.getCreatedOn()),
-                        TreeMap::new,
-                        Collectors.summingInt(m -> m.getId().intValue())));
-
-
-        */
-
-        return "home/archive";
+       return "home/archive";
     }
 }

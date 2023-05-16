@@ -1,16 +1,20 @@
 package pro.ivanov.blog.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import pro.ivanov.blog.entity.Article;
-import pro.ivanov.blog.repository.ArticleRepository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import pro.ivanov.blog.entity.Article;
+import pro.ivanov.blog.repository.ArticleRepository;
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
     private final ArticleRepository articleRepository;
 
@@ -18,7 +22,7 @@ public class HomeController {
         this.articleRepository = articleRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public String index(Model model) {
         List<Article> articles = this.articleRepository.findAll();
 
@@ -27,7 +31,7 @@ public class HomeController {
         return "home/index";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public String article(@PathVariable long id, Model model) {
         Article article = this.articleRepository.findById(id).orElseThrow();
 
