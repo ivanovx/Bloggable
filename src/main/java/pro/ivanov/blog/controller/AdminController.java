@@ -44,7 +44,7 @@ public class AdminController {
     }
 
     @PostMapping("/articles/create")
-    public String createArticle(@ModelAttribute("article") ArticleModel articleModel) {
+    public String createArticle(@ModelAttribute ArticleModel articleModel) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         User author = this.userRepository.findByUsername(authentication.getName()).orElseThrow();

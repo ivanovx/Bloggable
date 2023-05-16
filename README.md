@@ -1,2 +1,3 @@
-# blog-system
-Fork of my Blog system with Spring
+# Blog System
+
+Fork of my blog system with Spring.

@@ -31,14 +31,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .csrf(c -> c.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                         .anyRequest().permitAll()
                 )
-                .formLogin(login -> login.loginPage("/user/login").permitAll())
-                .logout(c -> c.logoutUrl("/user/logout").logoutSuccessUrl("/").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll());
+                .formLogin(login -> login
+                        .loginPage("/user/login")
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/user/logout")
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll());
 
         return http.build();
     }
@@ -51,7 +58,9 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> this.userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User with %s not found".formatted(username)));
+        return username -> this.userRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User with %s not found".formatted(username)));
     }
 
     @Bean
