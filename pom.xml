@@ -11,10 +11,7 @@
 
 	<groupId>pro.ivanov</groupId>
 	<artifactId>blog-system</artifactId>
-	<version>1.0.0</version>
-
-	<name>blog-system</name>
-	<description>Demo project for Spring Boot</description>
+	<version>0.0.1</version>
 
 	<properties>
 		<java.version>17</java.version>
