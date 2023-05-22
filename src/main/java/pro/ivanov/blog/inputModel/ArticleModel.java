@@ -7,4 +7,6 @@ public class ArticleModel {
     private String title;
 
     private String content;
+
+    private String keywords;
 }

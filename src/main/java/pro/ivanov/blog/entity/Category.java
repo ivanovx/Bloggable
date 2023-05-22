@@ -14,4 +14,12 @@ public class Category extends BaseEntity {
 
     @OneToMany
     private Set<Article> articles;
+
+    public Category() {
+
+    }
+
+    public Category(String name) {
+        this.name = name;
+    }
 }

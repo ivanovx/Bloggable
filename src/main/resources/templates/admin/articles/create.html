@@ -19,6 +19,10 @@
                     <label for="content">Content</label>
                     <textarea class="form-control" id="content" rows="3" th:field="*{content}"></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="keywords">Keywords</label>
+                    <input type="text" id="keywords" class="form-control" th:field="*{keywords}" />
+                </div>
                 <button type="submit" class="btn btn-primary">Create article</button>
             </form>
 
