@@ -87,6 +87,7 @@ public class AdminController {
         articleModel.setCategory(article.getCategory().getId());
         articleModel.setKeywords(String.join(",", article.getKeywords()));
 
+        model.addAttribute("articleId", article.getId());
         model.addAttribute("categories", categories);
         model.addAttribute("article", articleModel);
 

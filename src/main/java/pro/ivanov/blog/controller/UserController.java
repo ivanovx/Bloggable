@@ -12,8 +12,7 @@ public class UserController {
 
     @GetMapping(value = "/login")
     public String login(Model model) {
-        model.addAttribute("user", new LoginModel("csyntax", "csyntax"));
-
+        model.addAttribute("user", new LoginModel());
         return "user/login";
     }
 }
