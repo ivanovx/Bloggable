@@ -2,30 +2,28 @@ package pro.ivanov.blog.entity;
 
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "articles")
-public class Article {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+public class Article extends BaseEntity {
 
     @Column(nullable = false)
     private String title;
 
-
     @Column(nullable = false, columnDefinition="TEXT")
     private String content;
 
-    @Column(nullable = false)
-    private LocalDateTime createdOn = LocalDateTime.now();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name="article_keywords")
+    private Set<@Pattern(regexp = "^[\\w\\s\\+-]+$") String> keywords;
 
-    @Column(nullable = false)
-    private LocalDateTime updatedOn = LocalDateTime.now();
+    @ManyToOne
+    private Category category;
 
     @ManyToOne
     private User author;

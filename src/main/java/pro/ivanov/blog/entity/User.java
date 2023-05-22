@@ -9,36 +9,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-
+public class User extends BaseEntity implements UserDetails {
     @Column(nullable = false)
     private String name;
 
     @Column(unique = true, nullable = false)
-    private String username;
+    private String email;
 
     @Column(unique = true, nullable = false)
-    private String email;
+    private String username;
 
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private LocalDateTime createdOn = LocalDateTime.now();
-
-    @Column(nullable = false)
-    private LocalDateTime updatedOn = LocalDateTime.now();
+    private boolean active;
 
     @OneToMany
-    private List<Article> articles;
+    private Set<Article> articles;
 
     private Role role = Role.USER;
 
@@ -49,21 +41,21 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return active;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return active;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return active;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return active;
     }
 }

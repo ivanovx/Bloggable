@@ -71,7 +71,7 @@ public class AdminController {
 
     @PostMapping("/articles/update")
     public String updateArticle(@ModelAttribute Article article) {
-        article.setUpdatedOn(LocalDateTime.now());
+        article.setModified(LocalDateTime.now());
 
         this.articleRepository.save(article);
 

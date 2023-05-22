@@ -44,6 +44,7 @@ public class ApplicationInit implements ApplicationRunner {
             user.setName("Ivan Ivanov");
             user.setUsername("csyntax");
             user.setEmail("csyntax@outlook.com");
+            user.setActive(true);
             user.setRole(Role.ADMIN);
             user.setPassword(this.passwordEncoder.encode("csyntax"));
 

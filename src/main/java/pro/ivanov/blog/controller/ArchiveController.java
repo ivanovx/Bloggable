@@ -25,7 +25,7 @@ public class ArchiveController {
 
     @GetMapping("/{month}/{year}")
     public String index(@PathVariable int month, @PathVariable int year, Model model) {
-       List<Article> articles = this.articleRepository.findAll().stream().filter(f -> f.getCreatedOn().getMonth().getValue() == month && f.getCreatedOn().getYear() == year).toList();
+       List<Article> articles = this.articleRepository.findAll().stream().filter(f -> f.getCreated().getMonth().getValue() == month && f.getCreated().getYear() == year).toList();
 
        model.addAttribute("articles", articles);
 

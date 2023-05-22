@@ -16,7 +16,7 @@
 
 
                             <h3 class="mb-0" th:text="${article.title}"></h3>
-                            <div class="mb-1 text-body-secondary" th:text="${article.createdOn}"></div>
+                            <div class="mb-1 text-body-secondary" th:text="${article.created}"></div>
                             <div class="card-text mb-auto" th:utext="${article.content}"></div>
                             <a th:href="@{/{id}(id=${article.id})}" class="stretched-link">Continue reading</a>
                         </div>

@@ -14,7 +14,7 @@ public class Setting {
     @Column(unique = true)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String value;
 
     public Setting() {
