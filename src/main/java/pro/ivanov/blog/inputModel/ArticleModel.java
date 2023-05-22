@@ -8,5 +8,7 @@ public class ArticleModel {
 
     private String content;
 
+    private long category;
+
     private String keywords;
 }

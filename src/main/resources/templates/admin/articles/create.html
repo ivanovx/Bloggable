@@ -23,6 +23,9 @@
                     <label for="keywords">Keywords</label>
                     <input type="text" id="keywords" class="form-control" th:field="*{keywords}" />
                 </div>
+                <select class="form-select" th:field="*{category}">
+                    <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+                </select>
                 <button type="submit" class="btn btn-primary">Create article</button>
             </form>
 

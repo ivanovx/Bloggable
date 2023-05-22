@@ -56,11 +56,14 @@ public class AdminController {
 
     @PostMapping("/articles/create")
     public String createArticle(@ModelAttribute ArticleModel articleModel) {
-        User author = (User) SecurityContextHolder.getContext().getAuthentication();
+        User author = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Category category = this.categoryRepository.findById(articleModel.getCategory()).orElseThrow();
 
         Article article = new Article();
 
         article.setAuthor(author);
+        article.setCategory(category);
         article.setTitle(articleModel.getTitle());
         article.setContent(articleModel.getContent());
 
@@ -76,13 +79,15 @@ public class AdminController {
     @GetMapping("/articles/update/{id}")
     public String updateArticle(@PathVariable long id, Model model) {
         Article article = this.articleRepository.findById(id).orElseThrow();
-
+        List<Category> categories = this.categoryRepository.findAll();
         ArticleModel articleModel = new ArticleModel();
 
         articleModel.setTitle(article.getTitle());
         articleModel.setContent(article.getContent());
+        articleModel.setCategory(article.getCategory().getId());
         articleModel.setKeywords(String.join(",", article.getKeywords()));
 
+        model.addAttribute("categories", categories);
         model.addAttribute("article", articleModel);
 
         return "admin/articles/update";
@@ -91,9 +96,11 @@ public class AdminController {
     @PostMapping("/articles/update/{id}")
     public String updateArticle(@PathVariable long id, @ModelAttribute ArticleModel articleModel) {
         Article article = this.articleRepository.findById(id).orElseThrow();
+        Category category = this.categoryRepository.findById(articleModel.getCategory()).orElseThrow();
 
         Set<String> keywords = Arrays.stream(articleModel.getKeywords().split(",")).collect(Collectors.toSet());
 
+        article.setCategory(category);
         article.setContent(articleModel.getContent());
         article.setTitle(articleModel.getTitle());
         article.setModified(LocalDateTime.now());
