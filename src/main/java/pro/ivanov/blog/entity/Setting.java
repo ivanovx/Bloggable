@@ -3,6 +3,8 @@ package pro.ivanov.blog.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Data
 @Entity
 @Table(name="settings")
@@ -11,16 +13,9 @@ public class Setting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, updatable = false)
     private String name;
 
     @Column(nullable = false)
     private String value;
-
-    public Setting() { }
-
-    public Setting(String name, String value) {
-        this.name = name;
-        this.value = value;
-    }
 }
