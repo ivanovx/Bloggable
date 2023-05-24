@@ -5,65 +5,41 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.ApplicationArguments;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import pro.ivanov.blog.entity.Category;
-import pro.ivanov.blog.entity.Role;
 import pro.ivanov.blog.entity.Setting;
-import pro.ivanov.blog.entity.User;
-import pro.ivanov.blog.repository.CategoryRepository;
-import pro.ivanov.blog.repository.SettingRepository;
-import pro.ivanov.blog.repository.UserRepository;
+import pro.ivanov.blog.service.CategoryService;
+import pro.ivanov.blog.service.UserService;
 
 @Component
 public class ApplicationInit implements ApplicationRunner {
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
 
-    private final SettingRepository settingRepository;
 
-    private final PasswordEncoder passwordEncoder;
-
-    public ApplicationInit(UserRepository userRepository, CategoryRepository categoryRepository, SettingRepository settingRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.categoryRepository = categoryRepository;
-        this.settingRepository = settingRepository;
-        this.passwordEncoder = passwordEncoder;
+    public ApplicationInit(UserService userService, CategoryService categoryService) {
+        this.userService = userService;
+        this.categoryService = categoryService;
     }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        if (this.settingRepository.count() == 0) {
+      /*  if (this.settingRepository.count() == 0) {
             List<Setting> settings = List.of(
                     new Setting("title", "Sample title"),
                     new Setting("description", "Sample description")
             );
 
             this.settingRepository.saveAll(settings);
+        }*/
+
+        if (this.categoryService.count() == 0) {
+            List.of("default", "sample", "generic").forEach(category -> this.categoryService.createCategory(category));
         }
 
-        if (this.categoryRepository.count() == 0) {
-            List<Category> categories = List.of(
-                new Category("Sample"),
-                new Category("Other"),
-                new Category("Generic")
-            );
-
-            this.categoryRepository.saveAll(categories);
-        }
-
-        if (this.userRepository.count() == 0) {
-            User user = new User();
-
-            user.setName("Ivan Ivanov");
-            user.setUsername("csyntax");
-            user.setEmail("csyntax@outlook.com");
-            user.setActive(true);
-            user.setRole(Role.ADMIN);
-            user.setPassword(this.passwordEncoder.encode("csyntax"));
-
-            this.userRepository.save(user);
+        if (this.userService.count() == 0) {
+            this.userService.createAdmin("admin", "admin@admin.bg", "admin", "admin");
         }
     }
 }

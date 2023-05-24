@@ -17,9 +17,7 @@ public class Setting {
     @Column(nullable = false)
     private String value;
 
-    public Setting() {
-
-    }
+    public Setting() { }
 
     public Setting(String name, String value) {
         this.name = name;

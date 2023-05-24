@@ -17,6 +17,11 @@ public class CategoryService {
     }
 
     @Transactional(readOnly = true)
+    public long count() {
+        return this.categoryRepository.count();
+    }
+
+    @Transactional(readOnly = true)
     public List<Category> getCategories() {
         return this.categoryRepository.findAll();
     }

@@ -6,8 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.PathVariable;
-import pro.ivanov.blog.UserUtils;
 import pro.ivanov.blog.entity.Article;
 import pro.ivanov.blog.entity.Category;
 import pro.ivanov.blog.inputModel.ArticleModel;
@@ -57,7 +55,7 @@ public class ArticleService {
 
         Article article = new Article();
 
-        article.setAuthor(UserUtils.getUser());
+        article.setAuthor(UserService.getActiveUser());
         article.setCategory(category);
         article.setTitle(model.getTitle());
         article.setContent(model.getContent());

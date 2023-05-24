@@ -9,8 +9,6 @@ import pro.ivanov.blog.service.CategoryService;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalControllerAdvice {
