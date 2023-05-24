@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "categories")
 public class Category extends BaseEntity {
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String name;
 
     @OneToMany

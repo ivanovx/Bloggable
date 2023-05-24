@@ -11,20 +11,20 @@ import pro.ivanov.blog.service.ArticleService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/archive")
-public class ArchiveController {
+@RequestMapping("/categories")
+public class CategoryController {
     private final ArticleService articleService;
 
-    public ArchiveController(ArticleService articleService) {
+    public CategoryController(ArticleService articleService) {
         this.articleService = articleService;
     }
 
-    @GetMapping("/{month}/{year}")
-    public String index(@PathVariable int month, @PathVariable int year, Model model) {
-        List<Article> articles = this.articleService.getArchive(month, year);
+    @GetMapping("/{name}")
+    public String index(@PathVariable String name, Model model) {
+        List<Article> articles = this.articleService.getArticlesByCategory(name);
 
         model.addAttribute("articles", articles);
 
-        return "home/archive";
+        return "home/category";
     }
 }

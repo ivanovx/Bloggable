@@ -45,7 +45,9 @@ public class ApplicationInit implements ApplicationRunner {
 
         if (this.categoryRepository.count() == 0) {
             List<Category> categories = List.of(
-                new Category("Sample"), new Category("Other"), new Category("Generic")
+                new Category("Sample"),
+                new Category("Other"),
+                new Category("Generic")
             );
 
             this.categoryRepository.saveAll(categories);

@@ -9,7 +9,7 @@
     <body>
         <section layout:fragment="content">
             <div class="row mb-2">
-                <div th:each="article: ${articles}" class="col-md-12">
+                <div th:each="article: ${page.content}" class="col-md-12">
                     <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
                         <div class="col p-4 d-flex flex-column position-static">
                             <strong class="d-inline-block mb-2 text-primary" th:text="${article.category.name}"></strong>
@@ -23,8 +23,8 @@
             </div>
 
             <nav class="blog-pagination">
-                <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-                <a class="btn btn-outline-secondary rounded-pill disabled">Newer</a>
+                <a class="btn btn-outline-primary rounded-pill" th:href="${page.previousOrFirstPageable()}">Older</a>
+                <a class="btn btn-outline-secondary rounded-pill disabled" th:href="${page.nextOrLastPageable()}">Newer</a>
             </nav>
         </section>
     </body>
