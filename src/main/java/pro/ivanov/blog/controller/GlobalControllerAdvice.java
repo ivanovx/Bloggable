@@ -21,7 +21,6 @@ public class GlobalControllerAdvice {
         this.categoryService = categoryService;
     }
 
-
     @ModelAttribute("categories")
     public List<Category> categories() {
         return this.categoryService.getCategories();

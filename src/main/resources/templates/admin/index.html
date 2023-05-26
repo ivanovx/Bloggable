@@ -9,15 +9,18 @@
     </head>
     <body>
         <section layout:fragment="content">
-            Logged user: <span sec:authentication="name"></span>
+          <!--  Logged user: <span sec:authentication="name"></span>
             Roles: <span sec:authentication="principal.authorities"></span>
-
-            <a th:href="@{/admin/articles/create}">Create article</a>
+            -->
 
             <ul class="list-group">
+                <li class="list-group-item">
+                    Articles
+                    <a th:href="@{/admin/articles/create}" class="btn btn-primary">Create</a>
+                </li>
                 <li th:each="article: ${articles}" class="list-group-item">
                     <span th:text="${article.title}"></span>
-                    <a th:href="@{/admin/articles/update/{id}(id=${article.id})}">Update</a>
+                    <a th:href="@{/admin/articles/update/{id}(id=${article.id})}" class="btn btn-info">Update</a>
                 </li>
             </ul>
         </section>

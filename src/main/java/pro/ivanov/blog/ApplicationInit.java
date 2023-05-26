@@ -12,8 +12,8 @@ import pro.ivanov.blog.service.SettingService;
 import pro.ivanov.blog.service.UserService;
 
 @Component
-public class ApplicationInit implements ApplicationRunner {
-    private final UserService userService;
+public class ApplicationInit {
+  /*  private final UserService userService;
 
     private final SettingService settingService;
 
@@ -40,5 +40,5 @@ public class ApplicationInit implements ApplicationRunner {
         if (this.userService.count() == 0) {
             this.userService.createAdmin("admin", "admin@admin.bg", "admin", "admin");
         }
-    }
+    }*/
 }

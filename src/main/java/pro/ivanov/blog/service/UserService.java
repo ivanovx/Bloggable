@@ -1,6 +1,7 @@
 package pro.ivanov.blog.service;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,12 +28,14 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getUser(String username) {
-        return this.userRepository.findByUsername(username).orElseThrow();
+        return this.userRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User with %s not found".formatted(username)));
     }
 
-    public static User getActiveUser() {
+   /* public static User getActiveUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
+    }*/
 
     public User createUser(String name, String email, String username, String password, Role role) {
         User user = new User();
