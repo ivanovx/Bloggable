@@ -1,3 +1,3 @@
-# Blog System
+# Bloggable
 
-Fork of my blog system with Spring.
+In progress
