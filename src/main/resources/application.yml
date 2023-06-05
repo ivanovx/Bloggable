@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://${RDS_HOSTNAME:localhost}:${RDS_PORT:3306}/${RDS_DB_NAME:blog}
-    username: ${RDS_USERNAME:root}
-    password: ${RDS_PASSWORD:root}
+    url: jdbc:mysql://${DB_HOSTNAME:localhost}:${DB_PORT:3306}/${DB_NAME:blog}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true
