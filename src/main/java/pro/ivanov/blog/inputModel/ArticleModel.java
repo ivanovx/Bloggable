@@ -1,11 +1,15 @@
 package pro.ivanov.blog.inputModel;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pro.ivanov.blog.entity.Article;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ArticleModel {
     private String title;
 
@@ -14,8 +18,6 @@ public class ArticleModel {
     private long category;
 
     private String keywords;
-
-    public ArticleModel() { }
 
     public static ArticleModel of(Article article) {
         return ArticleModel
