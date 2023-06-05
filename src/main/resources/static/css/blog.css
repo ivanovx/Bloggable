@@ -1,5 +1,13 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
+.header-img {
+    background-image: url("/images/header.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #373b3e !important;
+}
+
 .blog-header {
     border-bottom: 1px solid #e5e5e5;
 }
