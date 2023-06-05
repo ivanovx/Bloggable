@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout.html}">
+    <head>
+        <title>Admin</title>
+    </head>
+    <body>
+        <section layout:fragment="content">
+          <!--  Logged user: <span sec:authentication="name"></span>
+            Roles: <span sec:authentication="principal.authorities"></span>
+            -->
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Articles
+                    <a th:href="@{/admin/articles/create}" class="btn btn-primary">Create</a>
+                </li>
+                <li th:each="article: ${articles}" class="list-group-item">
+                    <span th:text="${article.title}"></span>
+                    <a th:href="@{/admin/articles/update/{id}(id=${article.id})}" class="btn btn-info">Update</a>
+                </li>
+            </ul>
+        </section>
+    </body>
+</html>
