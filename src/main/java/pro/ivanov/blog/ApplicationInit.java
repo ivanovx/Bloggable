@@ -33,12 +33,16 @@ public class ApplicationInit implements ApplicationRunner {
                     "description", "Sample description"
             ).forEach((name, value) -> this.settingService.createSetting(name, value));
         }
+
         if (this.categoryService.count() == 0) {
-            List.of("default", "sample", "generic").forEach(category -> this.categoryService.createCategory(category));
+            List
+                    .of("Uncategorized")
+                    .forEach(category -> this.categoryService.createCategory(category));
         }
 
         if (this.userService.count() == 0) {
-            this.userService.createAdmin("admin", "admin@admin.bg", "admin", "admin");
+            this.userService
+                    .createAdmin("Ivan Ivanov", "me@ivanov.pro", "ivanovx", "ivanovx");
         }
     }
 }
