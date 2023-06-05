@@ -46,19 +46,15 @@ public class AdminController {
     public String createArticle(@ModelAttribute ArticleModel articleModel) {
         this.articleService.createArticle(articleModel);
 
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @GetMapping("/articles/update/{id}")
     public String updateArticle(@PathVariable long id, Model model) {
         Article article = this.articleService.getArticle(id);
         List<Category> categories = this.categoryService.getCategories();
-        ArticleModel articleModel = new ArticleModel();
 
-        articleModel.setTitle(article.getTitle());
-        articleModel.setContent(article.getContent());
-        articleModel.setCategory(article.getCategory().getId());
-        articleModel.setKeywords(String.join(",", article.getKeywords()));
+        ArticleModel articleModel = ArticleModel.of(article);
 
         model.addAttribute("articleId", article.getId());
         model.addAttribute("categories", categories);
@@ -71,6 +67,6 @@ public class AdminController {
     public String updateArticle(@PathVariable long id, @ModelAttribute ArticleModel articleModel) {
         this.articleService.updateArticle(id, articleModel);
 
-        return "redirect:/";
+        return "redirect:/admin";
     }
 }
