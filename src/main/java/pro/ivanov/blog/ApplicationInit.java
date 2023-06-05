@@ -12,7 +12,7 @@ import pro.ivanov.blog.service.SettingService;
 import pro.ivanov.blog.service.UserService;
 
 @Component
-public class ApplicationInit {
+public class ApplicationInit implements ApplicationRunner {
   private final UserService userService;
 
     private final SettingService settingService;
