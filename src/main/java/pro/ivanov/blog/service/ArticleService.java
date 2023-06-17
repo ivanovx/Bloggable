@@ -93,15 +93,14 @@ public class ArticleService {
         return articles;
     }
 
+    // Migrate from treemap to hashmap
     @Transactional(readOnly = true)
     public Map<YearMonth, Long> createArchive() {
         return this.getArticles()
                 .stream()
                 .collect(Collectors.groupingBy(article -> YearMonth.from(article.getCreated()),
-                        TreeMap::new,
+                        HashMap::new,
                         Collectors.counting()
                 ));
     }
-
-
 }
