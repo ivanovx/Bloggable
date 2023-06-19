@@ -9,20 +9,23 @@
     </head>
     <body>
         <section layout:fragment="content">
-          <!--  Logged user: <span sec:authentication="name"></span>
+            Logged user: <span sec:authentication="name"></span>
             Roles: <span sec:authentication="principal.authorities"></span>
-            -->
 
-            <ul class="list-group">
-                <li class="list-group-item">
-                    Articles
-                    <a th:href="@{/admin/articles/create}" class="btn btn-primary">Create</a>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <a th:href="@{/admin/articles}" class="btn btn-link">Articles</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill" th:text="${articlesCount}"></span>
                 </li>
-                <li th:each="article: ${articles}" class="list-group-item">
-                    <span th:text="${article.title}"></span>
-                    <a th:href="@{/admin/articles/update/{id}(id=${article.id})}" class="btn btn-info">Update</a>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <a th:href="@{/admin/categories}" class="btn btn-link">Categories</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill" th:text="${categoriesCount}"></span>
                 </li>
-            </ul>
+            </ol>
         </section>
     </body>
 </html>
