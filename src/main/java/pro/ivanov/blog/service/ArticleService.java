@@ -55,7 +55,7 @@ public class ArticleService {
 
         Article article = new Article();
 
-       // article.setAuthor(UserService.getActiveUser());
+        //article.setAuthor(UserService.getActiveUser());
         article.setCategory(category);
         article.setTitle(model.getTitle());
         article.setContent(model.getContent());

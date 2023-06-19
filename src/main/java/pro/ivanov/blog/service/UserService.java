@@ -33,10 +33,6 @@ public class UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User with %s not found".formatted(username)));
     }
 
-   /* public static User getActiveUser() {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }*/
-
     public User createUser(String name, String email, String username, String password, Role role) {
         User user = new User();
 

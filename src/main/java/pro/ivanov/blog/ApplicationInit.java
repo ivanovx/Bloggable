@@ -13,7 +13,7 @@ import pro.ivanov.blog.service.UserService;
 
 @Component
 public class ApplicationInit implements ApplicationRunner {
-  private final UserService userService;
+    private final UserService userService;
 
     private final SettingService settingService;
 

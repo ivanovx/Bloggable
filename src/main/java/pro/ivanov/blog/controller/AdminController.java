@@ -1,15 +1,17 @@
 package pro.ivanov.blog.controller;
 
+
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import pro.ivanov.blog.entity.Article;
 import pro.ivanov.blog.entity.Category;
-import pro.ivanov.blog.inputModel.ArticleModel;
 import pro.ivanov.blog.service.ArticleService;
 import pro.ivanov.blog.service.CategoryService;
-
-import java.util.List;
+import pro.ivanov.blog.inputModel.ArticleModel;
 
 @Controller
 @RequestMapping("/admin")
