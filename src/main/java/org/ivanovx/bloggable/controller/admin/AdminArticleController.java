@@ -1,5 +1,7 @@
 package org.ivanovx.bloggable.controller.admin;
 
+import java.util.List;
+
 import org.ivanovx.bloggable.entity.Article;
 import org.ivanovx.bloggable.entity.Category;
 import org.ivanovx.bloggable.inputModel.ArticleModel;
@@ -8,8 +10,6 @@ import org.ivanovx.bloggable.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin/articles")

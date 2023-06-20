@@ -1,25 +1,26 @@
 package org.ivanovx.bloggable.controller;
 
-import org.ivanovx.bloggable.entity.Category;
-import org.ivanovx.bloggable.service.ArticleService;
-import org.ivanovx.bloggable.service.CategoryService;
-import org.ivanovx.bloggable.service.SettingService;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import java.util.Map;
 import java.util.List;
 import java.time.YearMonth;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+import org.ivanovx.bloggable.entity.Category;
+import org.ivanovx.bloggable.service.ArticleService;
+import org.ivanovx.bloggable.service.CategoryService;
+import org.ivanovx.bloggable.service.SettingService;
+
 @ControllerAdvice
-public class GlobalControllerAdvice {
+public class GlobalController {
     private final ArticleService articleService;
 
     private final SettingService settingService;
 
     private final CategoryService categoryService;
 
-    public GlobalControllerAdvice(
+    public GlobalController(
             ArticleService articleService,
             SettingService settingService,
             CategoryService categoryService

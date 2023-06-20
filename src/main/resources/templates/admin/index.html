@@ -9,10 +9,10 @@
     </head>
     <body>
         <section layout:fragment="content">
-            Logged user: <span sec:authentication="name"></span>
-            Roles: <span sec:authentication="principal.authorities"></span>
+            <!--Logged user: <span sec:authentication="name"></span>
+            Roles: <span sec:authentication="principal.authorities"></span>-->
 
-            <ol class="list-group list-group-numbered">
+            <ol class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <a th:href="@{/admin/articles}" class="btn btn-link">Articles</a>

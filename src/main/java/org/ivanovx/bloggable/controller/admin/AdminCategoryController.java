@@ -52,7 +52,7 @@ public class AdminCategoryController {
 
     @PostMapping("/update/{id}")
     public String update(@PathVariable long id, @ModelAttribute Category category) {
-        this.categoryService.updateCategory(category);
+        this.categoryService.updateCategory(id, category.getName());
 
         return "redirect:/admin";
     }

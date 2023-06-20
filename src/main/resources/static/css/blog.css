@@ -8,6 +8,10 @@
     color: #373b3e !important;
 }
 
+.logout-form {
+    display: inline;
+}
+
 .blog-header {
     border-bottom: 1px solid #e5e5e5;
 }

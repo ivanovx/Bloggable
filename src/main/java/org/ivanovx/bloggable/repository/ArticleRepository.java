@@ -17,7 +17,9 @@ public interface ArticleRepository extends PagingAndSortingRepository<Article, L
 
     Page<Article> findByOrderByCreatedDesc(Pageable pageable);
 
+    List<Article> findAllByCategoryName(String name);
+
     Optional<Article> findById(long id);
 
-    List<Article> findAllByCategoryName(String name);
+    Optional<Article> findBySlug(String slug);
 }

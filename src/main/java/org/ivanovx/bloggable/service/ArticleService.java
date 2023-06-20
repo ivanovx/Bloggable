@@ -5,6 +5,7 @@ import org.ivanovx.bloggable.entity.Article;
 import org.ivanovx.bloggable.entity.Category;
 import org.ivanovx.bloggable.inputModel.ArticleModel;
 import org.ivanovx.bloggable.repository.ArticleRepository;
+import org.ivanovx.bloggable.util.SlugGenerator;
 import org.ivanovx.bloggable.util.UserUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,15 +57,21 @@ public class ArticleService {
         return article;
     }
 
+    @Transactional(readOnly = true)
+    public Article getArticle(String slug) {
+        return this.articleRepository.findBySlug(slug).orElseThrow();
+    }
+
     public Article createArticle(ArticleModel model) {
         Category category = this.categoryService.getCategory(model.getCategory());
 
         Article article = new Article();
 
-        article.setAuthor(UserUtil.getActiveUser());
         article.setCategory(category);
         article.setTitle(model.getTitle());
         article.setContent(model.getContent());
+        article.setAuthor(UserUtil.getActiveUser());
+        article.setSlug(SlugGenerator.toSlug(model.getTitle()));
 
         Set<String> keywords = Arrays.stream(model.getKeywords().split(",")).collect(Collectors.toSet());
 

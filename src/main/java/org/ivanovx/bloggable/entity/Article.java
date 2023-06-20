@@ -13,6 +13,9 @@ import java.util.Set;
 public class Article extends BaseEntity {
 
     @Column(nullable = false)
+    private String slug;
+
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false, columnDefinition="TEXT")

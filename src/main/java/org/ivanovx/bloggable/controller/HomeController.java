@@ -29,9 +29,9 @@ public class HomeController {
         return "home/index";
     }
 
-    @GetMapping("{id}")
-    public String article(@PathVariable long id, Model model) {
-        Article article = this.articleService.getArticle(id);
+  @GetMapping("/articles/{slug}")
+    public String article(@PathVariable String slug, Model model) {
+        Article article = this.articleService.getArticle(slug);
 
         model.addAttribute("article", article);
 
