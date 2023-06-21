@@ -1,6 +1,7 @@
 package org.ivanovx.bloggable.config;
 
 import org.ivanovx.bloggable.repository.UserRepository;
+import org.ivanovx.bloggable.util.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

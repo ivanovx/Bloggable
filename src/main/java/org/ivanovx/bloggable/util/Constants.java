@@ -1,11 +1,13 @@
 package org.ivanovx.bloggable.util;
 
-import org.ivanovx.bloggable.entity.Category;
 import org.ivanovx.bloggable.entity.Role;
 import org.ivanovx.bloggable.entity.User;
+import org.ivanovx.bloggable.entity.Category;
 
-public class Constants {
-    public static User DEFAULT_ADMIN = new User("me@ivanov.pro", "ivanovx", "ivanovx", Role.ADMIN);
+public final class Constants {
+    public static final User DEFAULT_ADMIN = new User("me@ivanov.pro", "ivanovx", "ivanovx", Role.ADMIN);
 
-    public static Category DEFAULT_CATEGORY = new Category("Uncategorized");
+    public static final Category DEFAULT_CATEGORY = new Category("Uncategorized");
+
+    private Constants() { }
 }

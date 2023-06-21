@@ -5,6 +5,8 @@ import org.ivanovx.bloggable.repository.SettingRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class SettingService {
@@ -17,6 +19,16 @@ public class SettingService {
     @Transactional(readOnly = true)
     public long count() {
         return this.settingRepository.count();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Setting> getSettings() {
+        return this.settingRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Setting getSetting(long id) {
+        return this.settingRepository.findById(id).orElseThrow();
     }
 
     @Transactional(readOnly = true)
@@ -33,11 +45,7 @@ public class SettingService {
         return this.settingRepository.save(setting);
     }
 
-    public Setting updateSetting(String name, String value) {
-        Setting setting = this.getSetting(name);
-
-        setting.setValue(value);
-
+    public Setting updateSetting(Setting setting) {
         return this.settingRepository.save(setting);
     }
 }

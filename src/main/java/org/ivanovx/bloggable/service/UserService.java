@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @Transactional
 public class UserService {
@@ -32,10 +34,24 @@ public class UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User with %s not found".formatted(username)));
     }
 
+    @Transactional(readOnly = true)
+    public boolean haveAdminUser() {
+        return this.userRepository.findAllByRole(Role.ADMIN).stream().count() > 0;
+    }
+
     public User createUser(User user) {
         String password = this.passwordEncoder.encode(user.getPassword());
 
         user.setPassword(password);
+
+        return this.userRepository.save(user);
+    }
+
+    public User updateUser(User user) {
+        String password = this.passwordEncoder.encode(user.getPassword());
+
+        user.setPassword(password);
+        user.setModified(LocalDateTime.now());
 
         return this.userRepository.save(user);
     }

@@ -1,6 +1,5 @@
 package org.ivanovx.bloggable;
 
-import java.util.List;
 import java.util.Map;
 
 import org.ivanovx.bloggable.util.Constants;
@@ -28,6 +27,10 @@ public class ApplicationInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        if (!userService.haveAdminUser()) {
+            this.userService.createUser(Constants.DEFAULT_ADMIN);
+        }
+
         if (this.settingService.count() == 0) {
             Map.of(
                     "title", "Sample title",
@@ -37,10 +40,6 @@ public class ApplicationInit implements ApplicationRunner {
 
         if (this.categoryService.count() == 0) {
             this.categoryService.createCategory(Constants.DEFAULT_CATEGORY);
-        }
-
-        if (this.userService.count() == 0) {
-            this.userService.createUser(Constants.DEFAULT_ADMIN);
         }
     }
 }
