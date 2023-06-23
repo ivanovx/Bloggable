@@ -45,7 +45,11 @@ public class SettingService {
         return this.settingRepository.save(setting);
     }
 
-    public Setting updateSetting(Setting setting) {
+    public Setting updateSetting(long id, String value) {
+        Setting setting = this.getSetting(id);
+
+        setting.setValue(value);
+
         return this.settingRepository.save(setting);
     }
 }

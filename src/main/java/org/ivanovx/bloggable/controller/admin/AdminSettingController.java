@@ -34,10 +34,8 @@ public class AdminSettingController {
     }
 
     @PostMapping("/{id}")
-    public String updateSetting(@PathVariable long id) {
-        Setting setting = this.settingService.getSetting(id);
-
-        this.settingService.updateSetting(setting);
+    public String updateSetting(@PathVariable long id, @RequestParam("value") String value) {
+        this.settingService.updateSetting(id, value);
 
         return "redirect:/";
     }
