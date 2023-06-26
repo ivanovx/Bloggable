@@ -7,9 +7,10 @@ services:
     ports:
       - 8080:8080
   db:
-    image: mysql
-    restart: always
+    image: postgres:15.3
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - POSTGRES_DB=blogDb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
-      - 3306
+      - 5432:5432
